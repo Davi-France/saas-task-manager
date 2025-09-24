@@ -1,0 +1,11 @@
+.formContainer {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: 1rem;
+    width: 500px;
+
+    .description {
+        height: 130px;
+        max-width: 100%;
+    }
+}

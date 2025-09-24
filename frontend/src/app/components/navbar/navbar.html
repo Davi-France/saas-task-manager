@@ -1,0 +1,9 @@
+<nav>
+    <div class="navigation">
+        <a [routerLink]="['/home']" routerLinkActive="router-link-active">Dashboard</a>
+        <a [routerLink]="['/tasks']" routerLinkActive="router-link-active">Tarefas</a>
+    </div>
+    <div class="logoutButton">
+        <button (click)="logout()">Sair</button>
+    </div>
+</nav>

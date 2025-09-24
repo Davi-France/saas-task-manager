@@ -1,0 +1,8 @@
+<body class="app-container">
+    <aside *ngIf="authService.isLoggedIn()" class="sidebar">
+        <app-navbar></app-navbar>
+    </aside>
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</body>

@@ -1,0 +1,20 @@
+<div *ngIf="!isRegister; else registerComponent">
+    <h1>Login</h1>
+    <form (ngSubmit)="submit()">
+        <input [(ngModel)]="email" name="email" type="email" required>
+        <input [(ngModel)]="password" name="password" type="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <button (click)="isRegisterUser()">Registre-se</button>
+</div>
+
+<ng-template #registerComponent>
+    <h1>Registrar</h1>
+    <form (ngSubmit)="submit()">
+        <input [(ngModel)]="email" name="email" type="email" required>
+        <input [(ngModel)]="password" name="password" type="password" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</ng-template>

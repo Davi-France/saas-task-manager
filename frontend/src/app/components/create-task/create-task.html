@@ -1,0 +1,15 @@
+<div class="formContainer">
+    <form (ngSubmit)="submit()">
+
+        <label for="title">Titulo</label>
+        <input [(ngModel)]="title" name="title" type="text" required>
+
+        <label for="description">Descrição</label>
+        <textarea [(ngModel)]="description" name="description" id=""></textarea>
+
+        <label for="completed">Completa</label>
+        <input [(ngModel)]="completed" name="completed" type="checkbox" required>
+
+        <button type="submit">Criar Task</button>
+    </form>
+</div>
