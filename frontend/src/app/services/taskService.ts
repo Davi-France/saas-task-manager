@@ -32,9 +32,12 @@ export class TaskService {
   }
 
   updateTask(id: number, task: TaskInterface): Observable<TaskInterface> {
-    return this.http.put<TaskInterface>(`${this.apiUrl}/${id}`, task, { headers: this.getHeaders() });
+    return this.http.put<TaskInterface>(
+      `${this.apiUrl}/${id}`,
+      task,
+      { headers: this.getHeaders() }
+    );
   }
-
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }

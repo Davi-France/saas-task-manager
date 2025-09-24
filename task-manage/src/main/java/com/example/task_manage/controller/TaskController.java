@@ -33,21 +33,26 @@ public class TaskController {
     public Task createTask(@RequestBody Task task, Authentication authentication){
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         task.setUser(user);
+
+        if (task.getStatus() == null) {
+            task.setStatus("todo");
+        }
+
         return taskService.createTask(task);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask, Authentication authentication){
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         Task task = taskService.getTaskById(id).orElseThrow();
 
         if(!task.getUser().getId().equals(user.getId())){
-            throw new RuntimeException("voce nao pode editar essa tarefa");
+            throw new RuntimeException("Você não pode editar essa tarefa");
         }
 
         task.setTitle(updatedTask.getTitle());
         task.setDescription(updatedTask.getDescription());
-        task.setCompleted(updatedTask.isCompleted());
+        task.setStatus(updatedTask.getStatus());
 
         return taskService.updateTask(task);
     }

@@ -2,5 +2,5 @@ export interface TaskInterface {
     id?: number;
     title: string;
     description: string;
-    completed: boolean;
+    status: 'todo' | 'in-progress' | 'done';
 }

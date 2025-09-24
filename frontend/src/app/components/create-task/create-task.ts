@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskService } from '../../services/taskService';
@@ -7,14 +7,19 @@ import { TaskInterface } from '../../models/task.model';
 
 @Component({
   selector: 'app-create-task',
+  standalone: true, // <<< importante
   imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './create-task.html',
-  styleUrl: './create-task.scss'
+  styleUrls: ['./create-task.scss']
 })
 export class CreateTask {
-  title = ''
-  description = ''
-  completed = false
+  @Input() status!: 'todo' | 'in-progress' | 'done';
+  @Output() taskCreated = new EventEmitter<TaskInterface>();
+  @Output() close = new EventEmitter<void>();
+
+  title = '';
+  description = '';
+  completed = false;
 
   constructor(private taskService: TaskService) { }
 
@@ -22,19 +27,17 @@ export class CreateTask {
     const task: TaskInterface = {
       title: this.title,
       description: this.description,
-      completed: this.completed
-    }
+      status: this.status,
+    };
 
     this.taskService.createTask(task).subscribe({
       next: (res) => {
-        console.log("Task:", res);
+        this.taskCreated.emit(res);
         this.title = '';
         this.description = '';
-        this.completed = false;
+        this.close.emit();
       },
-      error: (err) => {
-        console.log(err)
-      }
-    })
+      error: (err) => console.error(err),
+    });
   }
 }

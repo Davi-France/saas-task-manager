@@ -1,15 +1,30 @@
-<div class="formContainer">
-    <form (ngSubmit)="submit()">
+<div class="modal-backdrop" (click)="close.emit()"></div>
 
-        <label for="title">Titulo</label>
+<div class="modal">
+    <form (ngSubmit)="submit()">
+        <h2>Criar Task</h2>
+
+        <label for="title">Título</label>
         <input [(ngModel)]="title" name="title" type="text" required>
 
         <label for="description">Descrição</label>
-        <textarea [(ngModel)]="description" name="description" id=""></textarea>
+        <textarea [(ngModel)]="description" name="description"></textarea>
 
-        <label for="completed">Completa</label>
-        <input [(ngModel)]="completed" name="completed" type="checkbox" required>
+        <label>
+            <input type="checkbox" [(ngModel)]="completed" name="completed">
+            Completa
+        </label>
 
-        <button type="submit">Criar Task</button>
+        <label>Status</label>
+        <select [(ngModel)]="status" name="status">
+            <option value="todo">A Fazer</option>
+            <option value="in-progress">Em Progresso</option>
+            <option value="done">Concluído</option>
+        </select>
+
+        <div class="buttons">
+            <button type="submit">Criar</button>
+            <button type="button" (click)="close.emit()">Cancelar</button>
+        </div>
     </form>
 </div>

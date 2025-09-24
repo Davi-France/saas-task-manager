@@ -1,0 +1,33 @@
+<div class="kanban-header">
+    <h2>Meu Kanban</h2>
+    <button (click)="showCreateForm('todo')">Nova Task</button>
+</div>
+
+<div class="kanban">
+
+    <div class="column" cdkDropList [id]="'todo'" [cdkDropListData]="todoTasks" [cdkDropListConnectedTo]="['in-progress','done']" (cdkDropListDropped)="drop($event)">
+        <h3>A Fazer</h3>
+        <div *ngFor="let task of todoTasks" cdkDrag class="task">
+            {{ task.title }}
+        </div>
+    </div>
+
+    <div class="column" cdkDropList [id]="'in-progress'" [cdkDropListData]="inProgressTasks" [cdkDropListConnectedTo]="['todo','done']" (cdkDropListDropped)="drop($event)">
+        <h3>Em Progresso</h3>
+        <div *ngFor="let task of inProgressTasks" cdkDrag class="task">
+            {{ task.title }}
+        </div>
+    </div>
+
+    <div class="column" cdkDropList [id]="'done'" [cdkDropListData]="doneTasks" [cdkDropListConnectedTo]="['todo','in-progress']" (cdkDropListDropped)="drop($event)">
+        <h3>Concluído</h3>
+        <div *ngFor="let task of doneTasks" cdkDrag class="task">
+            {{ task.title }}
+        </div>
+    </div>
+
+</div>
+
+<!-- Componente de criação de task -->
+<app-create-task *ngIf="showForm" [status]="currentStatus" (taskCreated)="onTaskCreated($event)" (close)="closeForm()">
+</app-create-task>

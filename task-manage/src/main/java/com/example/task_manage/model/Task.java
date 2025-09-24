@@ -16,7 +16,16 @@ public class Task {
 
     private String title;
     private String description;
-    private boolean completed;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,13 +46,7 @@ public class Task {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
 
     public User getUser() {
         return user;
@@ -52,6 +55,5 @@ public class Task {
     public void setUser(User user) {
         this.user = user;
     }
-
 
 }
