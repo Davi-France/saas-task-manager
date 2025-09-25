@@ -52,7 +52,6 @@ export class KanbanComponent implements OnInit {
 
       const movedTask = event.container.data[event.currentIndex];
 
-      // atualiza o status localmente
       if (event.container.id === 'todo') movedTask.status = 'todo';
       if (event.container.id === 'in-progress') movedTask.status = 'in-progress';
       if (event.container.id === 'done') movedTask.status = 'done';

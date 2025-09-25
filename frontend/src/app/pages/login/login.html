@@ -1,20 +1,23 @@
-<div *ngIf="!isRegister; else registerComponent">
+<div class="login-container" *ngIf="!isRegister">
     <h1>Login</h1>
     <form (ngSubmit)="submit()">
-        <input [(ngModel)]="email" name="email" type="email" required>
-        <input [(ngModel)]="password" name="password" type="password" required>
+        <input [(ngModel)]="email" name="email" type="email" required placeholder="E-mail">
+        <input [(ngModel)]="password" name="password" type="password" required placeholder="Senha">
 
         <button type="submit">Login</button>
     </form>
-    <button (click)="isRegisterUser()">Registre-se</button>
+    <a class="register-button" (click)="openRegister()">Registre-se</a>
 </div>
 
-<ng-template #registerComponent>
-    <h1>Registrar</h1>
-    <form (ngSubmit)="submit()">
-        <input [(ngModel)]="email" name="email" type="email" required>
-        <input [(ngModel)]="password" name="password" type="password" required>
+<div class="modal login-container" *ngIf="isRegister">
+    <div class="modal-content">
+        <span class="close" (click)="closeRegister()"><mat-icon>arrow_back</mat-icon></span>
+        <h1>Registrar</h1>
+        <form (ngSubmit)="submitRegister()">
+            <input [(ngModel)]="email" name="email" type="email" required placeholder="E-mail">
+            <input [(ngModel)]="password" name="password" type="password" required placeholder="Senha">
 
-        <button type="submit">Cadastrar</button>
-    </form>
-</ng-template>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>

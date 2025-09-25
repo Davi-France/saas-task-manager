@@ -1,32 +1,50 @@
-/* kanban.scss */
+.kanban-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    h2 {
+        font-size: 2.3rem;
+        font-weight: 400;
+    }
+
+    button {
+        margin-bottom: 3rem;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+}
 
 .kanban {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     padding: 0 10px;
+    justify-content: center;
 }
 
 .column {
     flex: 1;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    border-radius: 6px;
+    width: 200px;
     padding: 15px;
     min-height: 450px;
     display: flex;
     flex-direction: column;
     transition: background-color 0.3s;
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.05);
 
-    &:hover {
-        background-color: #f0f0f0;
-    }
+
 
     h3 {
         margin-top: 0;
         text-align: center;
         font-size: 20px;
         margin-bottom: 15px;
-        color: #555;
+        color: var(--white);
         position: relative;
+        font-weight: 400;
     }
 
     .task {
@@ -47,7 +65,32 @@
         &:hover {
             background-color: #fefefe;
         }
+
+        h5 {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            max-width: 100%;
+            text-align: center;
+            font-weight: 200;
+            font-size: 1rem;
+            padding-bottom: 0.4rem;
+        }
+
+        p {
+            margin-top: 0.3rem;
+        }
     }
+}
+
+.todo-column {
+    background-color: var(--color-primary);
+}
+
+.progress-column {
+    background-color: var(--color-secondary);
+}
+
+.done-column {
+    background-color: var(--color-green);
 }
 
 /* Responsividade */

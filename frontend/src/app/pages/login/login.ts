@@ -4,10 +4,11 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule, MatIconModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
   standalone: true
@@ -36,5 +37,18 @@ export class Login {
       })
     }
 
+  }
+
+  submitRegister() {
+    console.log('Cadastro com:', this.email, this.password);
+    this.closeRegister();
+  }
+
+  openRegister() {
+    this.isRegister = true;
+  }
+
+  closeRegister() {
+    this.isRegister = false;
   }
 }
