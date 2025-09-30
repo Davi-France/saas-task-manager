@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
 import { AuthService } from './services/authService';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, CommonModule],
+  imports: [RouterOutlet, Navbar, CommonModule, MatDialogModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

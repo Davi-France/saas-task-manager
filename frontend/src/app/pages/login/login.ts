@@ -25,22 +25,20 @@ export class Login {
   }
 
   submit() {
-    if (this.isRegister) {
-      this.authService.register(this.email, this.password).subscribe(() => {
-        alert("usuario novo cadastrado")
-        this.isRegister = false
-      })
-    } else {
-      this.authService.login(this.email, this.password).subscribe((res: any) => {
-        this.authService.saveToken(res.token)
-        this.router.navigate(['/home'])
-      })
-    }
+
+    this.authService.login(this.email, this.password).subscribe((res: any) => {
+      this.authService.saveToken(res.token)
+      this.router.navigate(['/home'])
+    })
+
 
   }
 
   submitRegister() {
-    console.log('Cadastro com:', this.email, this.password);
+    this.authService.register(this.email, this.password).subscribe(() => {
+      alert("usuario novo cadastrado")
+      this.isRegister = false
+    })
     this.closeRegister();
   }
 

@@ -6,6 +6,8 @@ import { CreateTask } from '../../components/create-task/create-task';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskDetailsComponent } from '../../components/task-details/task-details';
 
 @Component({
   selector: 'app-kanban',
@@ -21,8 +23,10 @@ export class KanbanComponent implements OnInit {
 
   showForm = false;
   currentStatus: TaskInterface['status'] = 'todo';
+  selectedTask: TaskInterface | null = null;
+  showTaskModal = false;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadTasks();
@@ -83,5 +87,35 @@ export class KanbanComponent implements OnInit {
     if (task.status === 'in-progress') this.inProgressTasks.push(task);
     if (task.status === 'done') this.doneTasks.push(task);
     this.closeForm();
+  }
+
+  openTaskDetails(task: any) {
+    console.log('Task clicada:', task);
+    const dialogRef = this.dialog.open(TaskDetailsComponent, {
+      width: '500px',
+      data: task,
+      panelClass: 'custom-task-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.deleted) {
+        this.loadTasks();
+      }
+    });
+  }
+
+  closeTaskModal() {
+    this.showTaskModal = false;
+    this.selectedTask = null;
+  }
+  deleteTask(taskId: number) {
+    this.taskService.deleteTask(taskId).subscribe({
+      next: () => {
+        console.log("Task deletada!");
+        this.loadTasks(); // recarrega as tasks
+        this.closeTaskModal(); // fecha o modal
+      },
+      error: (err) => console.error("Erro ao deletar task:", err)
+    });
   }
 }
