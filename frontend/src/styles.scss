@@ -176,3 +176,38 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+.mat-mdc-dialog-surface {
+    background-color: #1e1e2f !important;
+    padding: 1.5rem;
+    color: #e0e0ff !important;
+    border-radius: 12px !important;
+    max-width: 500px;
+    width: 90%;
+
+
+    h2 {
+        color: #dcd6f7 !important;
+    }
+
+    p {
+        color: #e0e0ff !important;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1.5rem;
+
+        button[color="warn"] {
+            background-color: #f44336 !important;
+            color: #fff !important;
+        }
+
+        button[mat-button] {
+            color: #b799f7 !important;
+        }
+    }
+}

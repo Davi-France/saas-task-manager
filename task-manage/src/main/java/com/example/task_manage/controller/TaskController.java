@@ -24,13 +24,13 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getUserTasks(Authentication authentication){
+    public List<Task> getUserTasks(Authentication authentication) {
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         return taskService.getTaskByUser(user);
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task, Authentication authentication){
+    public Task createTask(@RequestBody Task task, Authentication authentication) {
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         task.setUser(user);
 
@@ -42,11 +42,11 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask, Authentication authentication){
+    public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask, Authentication authentication) {
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         Task task = taskService.getTaskById(id).orElseThrow();
 
-        if(!task.getUser().getId().equals(user.getId())){
+        if (!task.getUser().getId().equals(user.getId())) {
             throw new RuntimeException("Você não pode editar essa tarefa");
         }
 
@@ -58,12 +58,12 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable Long id, Authentication authentication){
+    public void deleteTask(@PathVariable Long id, Authentication authentication) {
         User user = userService.findByEmail(authentication.getName()).orElseThrow();
         Task task = taskService.getTaskById(id).orElseThrow();
 
-        if(!task.getUser().getId().equals(user.getId())){
-            throw  new RuntimeException("Voce nao pode deletar essa tarefa");
+        if (!task.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Voce nao pode deletar essa tarefa");
         }
 
         taskService.deleteTask(id);

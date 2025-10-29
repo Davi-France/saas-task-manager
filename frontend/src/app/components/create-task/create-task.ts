@@ -7,7 +7,7 @@ import { TaskInterface } from '../../models/task.model';
 
 @Component({
   selector: 'app-create-task',
-  standalone: true, // <<< importante
+  standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './create-task.html',
   styleUrls: ['./create-task.scss']

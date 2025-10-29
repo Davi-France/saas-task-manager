@@ -90,20 +90,18 @@ export class KanbanComponent implements OnInit {
   }
 
   openTaskDetails(task: any) {
-    console.log('Task clicada:', task);
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       width: '500px',
       data: task,
       panelClass: 'custom-task-dialog'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result?.deleted) {
         this.loadTasks();
       }
     });
   }
-
   closeTaskModal() {
     this.showTaskModal = false;
     this.selectedTask = null;

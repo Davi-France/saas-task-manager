@@ -3,29 +3,24 @@ package com.example.task_manage.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
     private String description;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     private String status;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean completed = false;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -45,8 +40,6 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public User getUser() {
         return user;
