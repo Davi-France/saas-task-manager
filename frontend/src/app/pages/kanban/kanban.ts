@@ -110,8 +110,8 @@ export class KanbanComponent implements OnInit {
     this.taskService.deleteTask(taskId).subscribe({
       next: () => {
         console.log("Task deletada!");
-        this.loadTasks(); // recarrega as tasks
-        this.closeTaskModal(); // fecha o modal
+        this.loadTasks();
+        this.closeTaskModal();
       },
       error: (err) => console.error("Erro ao deletar task:", err)
     });

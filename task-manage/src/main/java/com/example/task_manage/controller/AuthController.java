@@ -27,7 +27,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public User register(@RequestBody User user){
-        return userService.register(user, passwordEncoder); // Certifique-se de passar o encoder
+        return userService.register(user, passwordEncoder);
     }
 
     @PostMapping("/login")

@@ -15,14 +15,9 @@ html {
 }
 
 body {
-    // Default the application to a light color theme. This can be changed to
-    // `dark` to enable the dark color theme, or to `light dark` to defer to the
-    // user's system settings.
+
     color-scheme: light;
 
-    // Set a default background, font and text colors for the application using
-    // Angular Material's system-level CSS variables. Learn more about these
-    // variables at https://material.angular.dev/guide/system-variables
     background-color: var(--mat-sys-surface);
     color: var(--mat-sys-on-surface);
     font: var(--mat-sys-body-medium);
@@ -59,9 +54,6 @@ body {
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* ------------------------------
-   Body base
------------------------------- */
 body {
     font-family: 'Inter', 'Segoe UI', sans-serif;
     background-color: var(--color-bg);
@@ -70,9 +62,6 @@ body {
     font-size: 16px;
 }
 
-/* ------------------------------
-   Links
------------------------------- */
 a {
     color: var(--color-primary);
     text-decoration: none;
@@ -82,9 +71,6 @@ a:hover {
     color: var(--color-primary-dark);
 }
 
-/* ------------------------------
-   Botões
------------------------------- */
 button {
     border: none;
     cursor: pointer;
@@ -106,9 +92,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* ------------------------------
-   Inputs
------------------------------- */
 input,
 textarea,
 select {
@@ -128,18 +111,12 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
-/* ------------------------------
-   Containers
------------------------------- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1.5rem;
 }
 
-/* ------------------------------
-   Cards
------------------------------- */
 .card {
     background: white;
     border-radius: var(--radius);
@@ -148,9 +125,6 @@ select:focus {
     margin-bottom: 1rem;
 }
 
-/* ------------------------------
-   Utilitários
------------------------------- */
 .text-center {
     text-align: center;
 }

@@ -15,7 +15,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // Agora recebe o PasswordEncoder como parâmetro
     public User register(User user, org.springframework.security.crypto.password.PasswordEncoder passwordEncoder){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_USER");
@@ -24,5 +23,9 @@ public class UserService {
 
     public Optional<User> findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 }

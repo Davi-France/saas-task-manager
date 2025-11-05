@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**", "/teams/**", "team-members/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore((Filter) jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

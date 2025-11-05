@@ -13,31 +13,33 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public TaskService(TaskRepository taskRepository){
+    public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> getTaskByUser(User user){
-        return  taskRepository.findByUser(user);
+    public List<Task> getTasksForUser(User user) {
+        String role = user.getRole();
+
+        if ("ADMIN".equalsIgnoreCase(role)) {
+            return taskRepository.findAll();
+        }
+
+        return taskRepository.findByAssigneeOrCreatedBy(user, user);
     }
 
-    public Task createTask(Task task){
-        return  taskRepository.save(task);
+    public Task createTask(Task task) {
+        return taskRepository.save(task);
     }
 
-    public Optional<Task> getTaskById(Long id){
+    public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(id);
     }
 
-    public Task task (Task task){
+    public Task updateTask(Task task) {
         return taskRepository.save(task);
     }
 
-    public void deleteTask(Long id){
+    public void deleteTask(Long id) {
         taskRepository.deleteById(id);
-    }
-
-    public Task updateTask(Task task){
-        return taskRepository.save(task);
     }
 }
